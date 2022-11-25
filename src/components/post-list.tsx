@@ -1,5 +1,5 @@
 import {shallowEqual, useSelector} from "react-redux";
-import {PostsState} from "../reducers/posts-reducer";
+import {PostsState} from "../reducers/posts-slice";
 import PostListItem from "./post-list-item";
 import {Post} from "../entities/post";
 

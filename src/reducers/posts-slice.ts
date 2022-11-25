@@ -1,14 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import {Post, Comment} from "../entities/post";
+import type {PayloadAction} from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
+import {Comment, Post} from "../entities/post";
 import {v1} from "uuid"
+import {randomPostFactory} from "../utilities/random-factories";
+
+export interface UpVotePayload {
+    type: "comment" | "post"
+
+}
 
 export interface PostsState {
     posts: Post[]
 }
 
 const initialState: PostsState = {
-    posts: [],
+    posts: [randomPostFactory()],
 }
 
 export const postsSlice = createSlice({
@@ -38,8 +44,6 @@ export const postsSlice = createSlice({
 
             const post = state.posts[postIndex]
 
-            console.log(post);
-
             post.comments?.unshift({
                 id: v1(),
                 pid: action.payload.pid!,
@@ -52,7 +56,31 @@ export const postsSlice = createSlice({
                 replyCount: 0
             })
 
-            state.posts[postIndex] =  post
+            state.posts[postIndex] = post
+
+        },
+
+        upVotePost: (state, action: PayloadAction<string>) => {
+
+            console.log(action.payload);
+
+            const postIndex = state.posts.findIndex(post => post.id === action.payload);
+            const post = state.posts[postIndex];
+            post.hypeCount++;
+            state.posts[postIndex] = post;
+
+        },
+
+        upVoteComment: (state, action: PayloadAction<{postId: string, commentId: string}>) => {
+
+            const postIndex = state.posts.findIndex(post => post.id === action.payload.postId);
+            const post = state.posts[postIndex];
+
+            const commentIndex = post.comments.findIndex(comment => comment.id === action.payload.commentId);
+            const comment = post.comments[commentIndex];
+
+            comment.hypeCount++;
+            state.posts[postIndex] = post
 
         },
 
@@ -60,6 +88,6 @@ export const postsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addPost, addComment } = postsSlice.actions
+export const {addPost, addComment, upVotePost, upVoteComment} = postsSlice.actions
 
 export default postsSlice.reducer

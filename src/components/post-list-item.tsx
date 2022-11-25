@@ -1,6 +1,6 @@
 import {Post} from "../entities/post";
 import Avatar from "./avatar";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 import IconButton from "./icon-button";
 import AddCommentForm from "./add-comment-form";
 import ActionBarButton from "./action-bar-button";
@@ -8,6 +8,8 @@ import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {ActionIconType} from "./action-icon";
 import moment from "moment";
 import CommentsList from "./comments-list";
+import {postsSlice} from "../reducers/posts-slice";
+import {useDispatch} from "react-redux";
 
 interface PostListItemProps {
     post: Post
@@ -15,6 +17,7 @@ interface PostListItemProps {
 
 export default function PostListItem(props: PostListItemProps) {
 
+    const dispatch = useDispatch();
     const {post} = props;
 
     const {
@@ -82,7 +85,8 @@ export default function PostListItem(props: PostListItemProps) {
                                  count={hypeCount}
                                  action={"Hypes"}
                                  threshold={100}
-                                 type={ActionIconType.hype}/>
+                                 type={ActionIconType.hype}
+                                 handleCta={() => dispatch(postsSlice.actions.upVotePost(id))}/>
 
                 <ActionBarButton icon={solid("comment")}
                                  count={comments.length}

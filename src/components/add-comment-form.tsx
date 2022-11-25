@@ -1,6 +1,6 @@
-import {FormEvent, FormEventHandler, SyntheticEvent, useCallback, useRef, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {postsSlice} from "../reducers/posts-reducer";
+import {FormEvent, useCallback, useRef} from "react";
+import {useDispatch} from "react-redux";
+import {postsSlice} from "../reducers/posts-slice";
 
 interface AddCommentFormProps {
     postId: string
@@ -30,18 +30,22 @@ export default function AddCommentForm(props: AddCommentFormProps) {
 
         <form ref={formRef}
               onSubmit={(e) => handleCommentAdd(e)}
-              className={"flex flex-row items-center gap-4 bg-gray-100 px-4 py-2 rounded-full"}>
+              className={"flex flex-row items-center gap-4 bg-slate-100 px-4 py-2 rounded-full"}>
 
             <img src={"/icons/comment.svg"}
-                 className={""}
-                 alt={""}/>
+                 className={"opacity-70"}
+                 alt={"comment"}/>
 
             <input ref={inputRef}
                    className={"bg-gray-100 grow focus:border-gray-100"}
                    placeholder={"Add Comment"}/>
 
             <button type={"submit"}>
-                <img src={"/icons/add.svg"} className={""} alt={""}/>
+
+                <img src={"/icons/add.svg"}
+                     className={"opacity-70"}
+                     alt={"add"}/>
+
             </button>
 
         </form>

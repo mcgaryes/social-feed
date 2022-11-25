@@ -1,8 +1,8 @@
-import React, {useMemo} from "react";
+import React from "react";
 import noop from "../utilities/noop"
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
 import ActionIcon, {ActionIconType} from "./action-icon";
+import ActionCopy from "./action-copy";
 
 interface ActionBarButtonProps {
 
@@ -30,13 +30,9 @@ export default function ActionBarButton(props: ActionBarButtonProps) {
             <ActionIcon icon={props.icon}
                         type={props.type}/>
 
-            <div className={"text-xs sm:text-sm"}>
-
-                <p>
-                    <span className={"font-bold"}>{props.count}</span> {props.action}
-                </p>
-
-            </div>
+            <ActionCopy action={props.action}
+                        type={props.type}
+                        count={props.count}/>
 
         </button>
 
