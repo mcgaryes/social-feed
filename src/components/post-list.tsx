@@ -14,7 +14,13 @@ export default function PostList(props: PostListProps) {
     return (
         <ul className={"list-none gap-3 flex-col flex"}>
             {
-                result.posts.map((post: Post) => <PostListItem key={post.id} post={post}/>)
+                result.posts.map((post: Post) => {
+                    return (
+                        <li key={post.id} className="list-none">
+                            <PostListItem post={post}/>
+                        </li>
+                    )
+                })
             }
         </ul>
     )

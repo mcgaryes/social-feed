@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import {Post} from "../entities/post";
+import {Post, Comment} from "../entities/post";
 import {v1} from "uuid"
 
 export interface PostsState {
@@ -18,9 +18,6 @@ export const postsSlice = createSlice({
 
         addPost: (state, action: PayloadAction<Partial<Post>>) => {
 
-
-            // let post = Post.from(action.payload);
-            // state.posts.unshift(JSON.parse(JSON.stringify(post)));
             state.posts.unshift({
                 avatar: '/avatar.png',
                 comments: [],
@@ -35,14 +32,34 @@ export const postsSlice = createSlice({
 
         },
 
-        addComment: (state, action: PayloadAction<any>) => {
-            // ...
+        addComment: (state, action: PayloadAction<Partial<Comment>>) => {
+
+            const postIndex = state.posts.findIndex(post => post.id === action.payload.pid);
+
+            const post = state.posts[postIndex]
+
+            console.log(post);
+
+            post.comments?.unshift({
+                id: v1(),
+                pid: action.payload.pid!,
+                content: action.payload.content ?? "",
+                createdAt: new Date().toISOString(),
+                avatar: '/avatar.png',
+                username: 'mcgaryes',
+                hypeCount: 0,
+                shareCount: 0,
+                replyCount: 0
+            })
+
+            state.posts[postIndex] =  post
+
         },
 
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { addPost } = postsSlice.actions
+export const { addPost, addComment } = postsSlice.actions
 
 export default postsSlice.reducer

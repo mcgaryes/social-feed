@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {postsSlice} from "../reducers/posts-reducer";
 
 interface AddCommentFormProps {
+    postId: string
 }
 
 export default function AddCommentForm(props: AddCommentFormProps) {
@@ -18,13 +19,12 @@ export default function AddCommentForm(props: AddCommentFormProps) {
         const comment = inputRef.current?.value;
 
         if (comment !== "" && comment !== undefined) {
-            dispatch(postsSlice.actions.addComment(comment));
+            dispatch(postsSlice.actions.addComment({pid: props.postId, content: comment}));
             inputRef.current?.blur();
             formRef.current?.reset();
         }
 
-
-    }, [formRef, inputRef,]);
+    }, [formRef, inputRef, dispatch, props.postId]);
 
     return (
 
