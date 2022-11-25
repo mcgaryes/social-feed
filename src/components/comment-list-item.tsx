@@ -1,33 +1,30 @@
-import {Post} from "../entities/post";
+import {Comment} from "../entities/post";
+import React, {useEffect, useState} from "react";
+import moment from "moment";
 import Avatar from "./avatar";
-import React, {useEffect, useMemo, useState} from "react";
 import IconButton from "./icon-button";
-import AddCommentForm from "./add-comment-form";
 import ActionBarButton from "./action-bar-button";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import {ActionIconType} from "./action-icon";
-import moment from "moment";
-import CommentsList from "./comments-list";
 
-interface PostListItemProps {
-    post: Post
+interface CommentListItemProps {
+    comment: Comment
 }
 
-export default function PostListItem(props: PostListItemProps) {
+export default function CommentListItem(props: CommentListItemProps) {
 
-    const {post} = props;
+    const {comment} = props;
 
     const {
-        id,
+        pid,
         content,
         createdAt,
-        comments,
         hypeCount,
         shareCount,
         username,
-        viewCount,
-        avatar
-    } = post;
+        avatar,
+        replyCount
+    } = comment;
 
     const [timeSinceDate, setTimeSinceDate] = useState<string>("")
 
@@ -47,23 +44,15 @@ export default function PostListItem(props: PostListItemProps) {
 
     return (
 
-        <div className="border rounded-lg px-6 py-4 flex flex-col gap-4">
+        <div className="flex flex-col gap-4">
 
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-row gap-4 items-center">
 
-                <Avatar image={avatar}/>
+                <Avatar image={avatar} size={40}/>
 
                 <div className="flex flex-col gap-1 grow">
 
-                    <div className="flex flex-row gap-4">
-
-                        <h1 className={"text-lg font-bold"}>{username}</h1>
-
-                        <div className={"grow"}/>
-
-                        <IconButton icon={"/icons/ellipsis.svg"}/>
-
-                    </div>
+                    <h1 className={"text-lg font-bold"}>{username}</h1>
 
                     <p className={"text-sm text-gray-500"}>
                         {timeSinceDate}
@@ -85,8 +74,8 @@ export default function PostListItem(props: PostListItemProps) {
                                  type={ActionIconType.hype}/>
 
                 <ActionBarButton icon={solid("comment")}
-                                 count={comments.length}
-                                 action={"Comments"}
+                                 count={replyCount}
+                                 action={"Replies"}
                                  threshold={100}
                                  type={ActionIconType.comment}/>
 
@@ -96,15 +85,7 @@ export default function PostListItem(props: PostListItemProps) {
                                  threshold={100}
                                  type={ActionIconType.share}/>
 
-                <IconButton size={"small"}>
-                    <p><span className={"font-bold"}>{viewCount}</span> Views</p>
-                </IconButton>
-
             </div>
-
-            <AddCommentForm postId={id}/>
-
-            <CommentsList comments={comments}/>
 
         </div>
 
