@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import {Post} from "../entities/post";
+import {v1} from "uuid"
 
 export interface PostsState {
     posts: Post[]
@@ -15,10 +16,11 @@ export const postsSlice = createSlice({
     initialState,
     reducers: {
 
-        addPost: (state, action: PayloadAction<Post>) => {
-            let posts = state.posts;
-            posts.push(action.payload);
-            state.posts = posts;
+        addPost: (state, action: PayloadAction<Partial<Post>>) => {
+            state.posts.push({
+                id: v1(),
+                title: action.payload.title ?? ""
+            });
         },
 
     }
