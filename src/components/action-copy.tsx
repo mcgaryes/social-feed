@@ -1,6 +1,4 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import React from "react";
-import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
 
 export enum ActionIconType {
     hype, comment, share
@@ -13,7 +11,6 @@ interface ActionCopyProps {
 }
 
 export default function ActionCopy(props: ActionCopyProps) {
-
 
     return (
 

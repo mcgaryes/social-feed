@@ -79,7 +79,7 @@ export default function PostListItem(props: PostListItemProps) {
 
             <p>{content}</p>
 
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-row gap-x-4 flex-wrap gap-y-0">
 
                 <ActionBarButton icon={solid("heart")}
                                  count={hypeCount}
