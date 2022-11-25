@@ -17,10 +17,26 @@ export const postsSlice = createSlice({
     reducers: {
 
         addPost: (state, action: PayloadAction<Partial<Post>>) => {
-            state.posts.push({
+
+
+            // let post = Post.from(action.payload);
+            // state.posts.unshift(JSON.parse(JSON.stringify(post)));
+            state.posts.unshift({
+                avatar: '/avatar.png',
+                comments: [],
+                content: action.payload.content ?? "",
+                createdAt: new Date().toISOString(),
+                hypeCount: 0,
                 id: v1(),
-                title: action.payload.title ?? ""
+                shareCount: 0,
+                username: 'mcgaryes',
+                viewCount: 0
             });
+
+        },
+
+        addComment: (state, action: PayloadAction<any>) => {
+            // ...
         },
 
     }

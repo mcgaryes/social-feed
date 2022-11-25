@@ -1,13 +1,47 @@
 import {Post} from "../entities/post";
 import Avatar from "./avatar";
-import React from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import IconButton from "./icon-button";
+import AddCommentForm from "./add-comment-form";
+import ActionBarButton from "./action-bar-button";
+import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
+import {ActionIconType} from "./action-icon";
+import moment from "moment";
 
 interface PostListItemProps {
     post: Post
 }
 
 export default function PostListItem(props: PostListItemProps) {
+
+    const {post} = props;
+
+    const {
+        content,
+        createdAt,
+        comments,
+        hypeCount,
+        shareCount,
+        username,
+        viewCount,
+        avatar
+    } = post;
+
+    const [timeSinceDate, setTimeSinceDate] = useState<string>("")
+
+    useEffect(() => {
+
+        setTimeSinceDate(moment(createdAt, "YYYY-MM-DDTHH:mm:ss.sssZ").fromNow())
+
+        const timeSinceInterval = setInterval(() => {
+            setTimeSinceDate(moment(createdAt, "YYYY-MM-DDTHH:mm:ss.sssZ").fromNow())
+        }, 30000);
+
+        return () => {
+            clearInterval(timeSinceInterval);
+        };
+
+    }, [createdAt]);
 
     return (
 
@@ -17,61 +51,58 @@ export default function PostListItem(props: PostListItemProps) {
 
                 <div className="flex flex-row gap-4">
 
-                    <Avatar image={"https://www.fillmurray.com/180/180"}/>
+                    <Avatar image={avatar}/>
 
-                    <div className="flex flex-col gap-1">
-                        <h1 className={"text-lg font-bold"}>Eric McGary</h1>
-                        <p className={"text-sm text-gray-500"}>2 minutes ago</p>
+                    <div className="flex flex-col gap-1 grow">
+
+                        <div className="flex flex-row gap-4">
+
+                            <h1 className={"text-lg font-bold"}>{username}</h1>
+
+                            <div className={"grow"}/>
+
+                            <IconButton icon={"/icons/ellipsis.svg"}/>
+
+                        </div>
+
+                        <p className={"text-sm text-gray-500"}>
+                            {timeSinceDate}
+                        </p>
+
                     </div>
 
-                    <div className={"grow"}/>
-
-                    <img src={"/icons/ellipsis.svg"} className={"self-center"} alt={""}/>
 
                 </div>
 
-                <p>{props.post.title}</p>
+                <p>{content}</p>
 
                 <div className="flex flex-row gap-4">
 
-                    <IconButton icon={"/icons/hype.svg"}
-                                size={"small"}
-                                handleCta={() => {
-                                    alert("clicked hypes")
-                                }}>
-                        <p><span className={"font-bold"}>100</span> Hypes</p>
-                    </IconButton>
+                    <ActionBarButton icon={solid("heart")}
+                                     count={hypeCount}
+                                     action={"Hypes"}
+                                     threshold={100}
+                                     type={ActionIconType.hype}/>
 
-                    <IconButton icon={"/icons/comment.svg"}
-                                size={"small"}
-                                handleCta={() => {
-                                    alert("clicked comments")
-                                }}>
-                        <p><span className={"font-bold"}>25</span> Comments</p>
-                    </IconButton>
+                    <ActionBarButton icon={solid("comment")}
+                                     count={comments.length}
+                                     action={"Comments"}
+                                     threshold={100}
+                                     type={ActionIconType.comment}/>
 
-                    <IconButton icon={"/icons/share.svg"}
-                                size={"small"}
-                                handleCta={() => {
-                                    alert("clicked shares")
-                                }}>
-                        <p>
-                            <span className={"font-bold"}>12</span> Shares
-                        </p>
-                    </IconButton>
+                    <ActionBarButton icon={solid("share")}
+                                     count={shareCount}
+                                     action={"Shares"}
+                                     threshold={100}
+                                     type={ActionIconType.share}/>
 
-                    <IconButton size={"small"}
-                                handleCta={() => {
-                                    alert("clicked shares")
-                                }}>
-                        <p>
-                            <span className={"font-bold"}>12</span> Views
-                        </p>
+                    <IconButton size={"small"}>
+                        <p><span className={"font-bold"}>{viewCount}</span> Views</p>
                     </IconButton>
 
                 </div>
 
-                <p>Add Comment</p>
+                <AddCommentForm/>
 
             </div>
 
