@@ -42,7 +42,7 @@ export default function IconButton(props: IconButtonProps) {
 
             {
                 props.icon &&
-                <img src={props.icon} className={"self-center bg"} alt={""}/>
+                <img src={props.icon} className={"self-center bg"} alt={"icon"}/>
             }
 
             {

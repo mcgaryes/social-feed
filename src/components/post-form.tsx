@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useRef, useState} from "react";
 import IconButton from "./icon-button";
 import {useDispatch} from "react-redux";
-import {postsSlice} from "../reducers/posts-reducer";
+import {postsSlice} from "../reducers/posts-slice";
 
 interface PostFormProps {
 }

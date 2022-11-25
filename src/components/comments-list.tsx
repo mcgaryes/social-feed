@@ -14,7 +14,7 @@ export default function CommentsList(props: CommentsListProps) {
 
             {
                 props.comments.map(comment => (
-                    <li className={"list-none"}>
+                    <li key={comment.id} className={"list-none"}>
                         <div style={{width: "100%", height: 1}} className={"bg-gray-200 my-6"}/>
                         <CommentListItem comment={comment}/>
                     </li>
