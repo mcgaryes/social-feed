@@ -20,7 +20,7 @@ export default function ActionBarButton(props: ActionBarButtonProps) {
 
     return (
 
-        <button className="flex flex-row gap-0.5 items-center"
+        <button className="flex flex-row gap-0.5 items-center group"
                 type={"button"}
                 onClick={(e) => {
                     e.preventDefault()
