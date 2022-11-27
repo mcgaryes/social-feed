@@ -32,7 +32,7 @@ export const postsSlice = createSlice({
                 hypeCount: 0,
                 id: v1(),
                 shareCount: 0,
-                username: 'mcgaryes',
+                username: 'jsmith',
                 viewCount: 0
             });
 
@@ -50,7 +50,7 @@ export const postsSlice = createSlice({
                 content: action.payload.content ?? "",
                 createdAt: new Date().toISOString(),
                 avatar: '/avatar.png',
-                username: 'mcgaryes',
+                username: 'jsmith',
                 hypeCount: 0,
                 shareCount: 0,
                 replyCount: 0
