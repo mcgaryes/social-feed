@@ -51,11 +51,15 @@ export default function PostForm(props: PostFormProps) {
 
                     <div className="flex flex-row gap-4">
 
-                        <IconButton icon={"/icons/camera.svg"}
-                                    cta={"Add Media"}/>
+                        <div className="flex flex-row gap-4 flex-wrap gap-y-0">
 
-                        <IconButton icon={"/icons/video.svg"}
-                                    cta={"Go Live"}/>
+                            <IconButton icon={"/icons/camera.svg"}
+                                        cta={"Add Media"}/>
+
+                            <IconButton icon={"/icons/video.svg"}
+                                        cta={"Go Live"}/>
+
+                        </div>
 
                         <div className={"grow"}/>
 
