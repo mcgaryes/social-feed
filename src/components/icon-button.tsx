@@ -17,7 +17,7 @@ function childBasedContent(children: ReactElement, size: "small" | "regular") {
     return (
         size === "small" ?
             <div className={"font-poppins text-xs sm:text-sm"}>{children}</div> :
-            <div className={"font-poppins text-sm sm:text-base"}>{children}</div>
+            <div className={"font-poppins text-xs sm:text-base"}>{children}</div>
     )
 }
 
@@ -25,7 +25,7 @@ function ctaBasedContent(cta: string, size: "small" | "regular") {
     return (
         size === "small" ?
             <p className={"font-poppins text-xs sm:text-sm"}>{cta}</p> :
-            <p className={"font-poppins text-sm sm:text-base"}>{cta}</p>
+            <p className={"font-poppins text-xs sm:text-base"}>{cta}</p>
     )
 }
 

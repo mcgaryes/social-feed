@@ -37,13 +37,13 @@ export default function AddCommentForm(props: AddCommentFormProps) {
                  alt={"comment"}/>
 
             <input ref={inputRef}
-                   className={"bg-gray-100 grow focus:border-gray-100"}
+                   className={"font-poppins min-w-0 bg-gray-100 grow focus:border-gray-100"}
                    placeholder={"Add Comment"}/>
 
             <button type={"submit"}>
 
                 <img src={"/icons/add.svg"}
-                     className={"opacity-70"}
+                     className={"opacity-70 min-w-fit"}
                      alt={"add"}/>
 
             </button>
