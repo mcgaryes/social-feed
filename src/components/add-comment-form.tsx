@@ -37,7 +37,7 @@ export default function AddCommentForm(props: AddCommentFormProps) {
                  alt={"comment"}/>
 
             <input ref={inputRef}
-                   className={"bg-gray-100 grow focus:border-gray-100"}
+                   className={"font-poppins bg-gray-100 grow focus:border-gray-100"}
                    placeholder={"Add Comment"}/>
 
             <button type={"submit"}>

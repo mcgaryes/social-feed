@@ -6,7 +6,7 @@ import PostList from "./components/post-list";
 function App() {
 
     return (
-        <div className="container mx-auto p-4 sm:p-8">
+        <div className="container mx-auto p-4 max-w-4xl sm:p-8">
             <PostForm/>
             <br />
             <PostList/>

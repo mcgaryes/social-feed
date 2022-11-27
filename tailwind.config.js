@@ -4,6 +4,9 @@ module.exports = {
         "./src/**/*.{js,jsx,ts,tsx}",
     ],
     theme: {
+        fontFamily: {
+            poppins: ['Poppins'],
+        },
         extend: {
             colors: {
                 cred: {
@@ -12,7 +15,9 @@ module.exports = {
                 },
                 cblue: {
                     100: "rgba(0, 108, 250, 0.3)",
-                    200: "#006CFA"
+                    200: "#006CFA",
+                    300: "#0355c5",
+                    400: "#0248a6",
                 },
                 cgray: {
                     100: "rgba(18, 21, 29, 0.3)",

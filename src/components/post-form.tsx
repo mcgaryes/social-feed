@@ -45,7 +45,7 @@ export default function PostForm(props: PostFormProps) {
 
                     <input ref={inputRef}
                            type={"text"}
-                           className={"border rounded-lg p-3"}
+                           className={"font-poppins border rounded-lg p-3"}
                            placeholder={"What's on your mind?"}
                            onChange={() => validateForm()}/>
 
@@ -61,7 +61,7 @@ export default function PostForm(props: PostFormProps) {
 
                         <button type={"submit"}
                                 disabled={!canSubmit}
-                                className={"cursor-pointer bg-blue-600 text-white font-bold px-7 py-3 rounded-lg disabled:bg-gray-100 hover:bg-blue-800"}>
+                                className={"cursor-pointer bg-cblue-200 text-white font-bold px-7 py-3 rounded-lg disabled:bg-gray-100 hover:bg-cblue-300 active:bg-cblue-400"}>
                             Post
                         </button>
 

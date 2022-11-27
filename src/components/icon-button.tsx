@@ -16,16 +16,16 @@ interface IconButtonProps {
 function childBasedContent(children: ReactElement, size: "small" | "regular") {
     return (
         size === "small" ?
-            <div className={"text-xs sm:text-sm"}>{children}</div> :
-            <div className={"text-sm sm:text-base"}>{children}</div>
+            <div className={"font-poppins text-xs sm:text-sm"}>{children}</div> :
+            <div className={"font-poppins text-sm sm:text-base"}>{children}</div>
     )
 }
 
 function ctaBasedContent(cta: string, size: "small" | "regular") {
     return (
         size === "small" ?
-            <p className={"text-xs sm:text-sm"}>{cta}</p> :
-            <p className={"text-sm sm:text-base"}>{cta}</p>
+            <p className={"font-poppins text-xs sm:text-sm"}>{cta}</p> :
+            <p className={"font-poppins text-sm sm:text-base"}>{cta}</p>
     )
 }
 

@@ -3,9 +3,8 @@ import Avatar from "./avatar";
 import React, {useEffect, useState} from "react";
 import IconButton from "./icon-button";
 import AddCommentForm from "./add-comment-form";
-import ActionBarButton from "./action-bar-button";
+import ActionBarButton, {ActionType} from "./action-bar-button";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
-import {ActionIconType} from "./action-icon";
 import moment from "moment";
 import CommentsList from "./comments-list";
 import {postsSlice} from "../reducers/posts-slice";
@@ -60,7 +59,7 @@ export default function PostListItem(props: PostListItemProps) {
 
                     <div className="flex flex-row gap-4">
 
-                        <h1 className={"text-lg font-bold"}>{username}</h1>
+                        <h1 className={"font-poppins text-lg"}>{username}</h1>
 
                         <div className={"grow"}/>
 
@@ -77,7 +76,7 @@ export default function PostListItem(props: PostListItemProps) {
 
             </div>
 
-            <p>{content}</p>
+            <p className={"text-sm leading-relaxed"}>{content}</p>
 
             <div className="flex flex-row gap-x-4 flex-wrap gap-y-0">
 
@@ -85,23 +84,23 @@ export default function PostListItem(props: PostListItemProps) {
                                  count={hypeCount}
                                  action={"Hypes"}
                                  threshold={100}
-                                 type={ActionIconType.hype}
+                                 type={ActionType.hype}
                                  handleCta={() => dispatch(postsSlice.actions.upVotePost(id))}/>
 
                 <ActionBarButton icon={solid("comment")}
                                  count={comments.length}
                                  action={"Comments"}
                                  threshold={100}
-                                 type={ActionIconType.comment}/>
+                                 type={ActionType.comment}/>
 
                 <ActionBarButton icon={solid("share")}
                                  count={shareCount}
                                  action={"Shares"}
                                  threshold={100}
-                                 type={ActionIconType.share}/>
+                                 type={ActionType.share}/>
 
                 <IconButton size={"small"}>
-                    <p><span className={"font-bold"}>{viewCount}</span> Views</p>
+                    <p className={"font-poppins"}><span className={"font-medium"}>{viewCount}</span> Views</p>
                 </IconButton>
 
             </div>

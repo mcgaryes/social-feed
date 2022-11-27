@@ -2,9 +2,8 @@ import {Comment} from "../entities/post";
 import React, {useEffect, useState} from "react";
 import moment from "moment";
 import Avatar from "./avatar";
-import ActionBarButton from "./action-bar-button";
+import ActionBarButton, {ActionType} from "./action-bar-button";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
-import {ActionIconType} from "./action-icon";
 import {useDispatch} from "react-redux";
 import {postsSlice} from "../reducers/posts-slice";
 
@@ -66,7 +65,7 @@ export default function CommentListItem(props: CommentListItemProps) {
 
             </div>
 
-            <p>{content}</p>
+            <p className={"text-sm leading-relaxed"}>{content}</p>
 
             <div className="flex flex-row gap-x-4 flex-wrap gap-y-0">
 
@@ -74,7 +73,7 @@ export default function CommentListItem(props: CommentListItemProps) {
                                  count={hypeCount}
                                  action={"Hypes"}
                                  threshold={100}
-                                 type={ActionIconType.hype}
+                                 type={ActionType.hype}
                                  handleCta={() => dispatch(postsSlice.actions.upVoteComment({
                                      postId: pid,
                                      commentId: id
@@ -84,13 +83,13 @@ export default function CommentListItem(props: CommentListItemProps) {
                                  count={replyCount}
                                  action={"Replies"}
                                  threshold={100}
-                                 type={ActionIconType.comment}/>
+                                 type={ActionType.comment}/>
 
                 <ActionBarButton icon={solid("share")}
                                  count={shareCount}
                                  action={"Shares"}
                                  threshold={100}
-                                 type={ActionIconType.share}/>
+                                 type={ActionType.share}/>
 
             </div>
 
