@@ -46,28 +46,29 @@ export default function CommentListItem(props: CommentListItemProps) {
 
     return (
 
-        <div className="flex flex-col gap-4">
+        <article className="flex flex-col gap-4">
 
             <div className="flex flex-row gap-4 items-center">
 
-                <Avatar image={avatar} size={40}/>
+                <Avatar image={avatar}
+                        size={40}/>
 
-                <div className="flex flex-col gap-1 grow">
+                <header className="flex flex-col gap-1 grow">
 
                     <h1 className={"text-lg font-bold"}>{username}</h1>
 
-                    <p className={"text-sm text-gray-500"}>
+                    <h2 className={"text-sm text-gray-500"}>
                         {timeSinceDate}
-                    </p>
+                    </h2>
 
-                </div>
+                </header>
 
 
             </div>
 
             <p className={"text-sm leading-relaxed"}>{content}</p>
 
-            <div className="flex flex-row gap-x-4 flex-wrap gap-y-0">
+            <footer className="flex flex-row gap-x-4 flex-wrap gap-y-0">
 
                 <ActionBarButton icon={solid("heart")}
                                  count={hypeCount}
@@ -91,9 +92,9 @@ export default function CommentListItem(props: CommentListItemProps) {
                                  threshold={100}
                                  type={ActionType.share}/>
 
-            </div>
+            </footer>
 
-        </div>
+        </article>
 
     )
 

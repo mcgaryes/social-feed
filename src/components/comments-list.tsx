@@ -10,18 +10,22 @@ export default function CommentsList(props: CommentsListProps) {
 
     return (
 
-        <ul className={"list-none"}>
+        <section>
 
-            {
-                props.comments.map(comment => (
-                    <li key={comment.id} className={"list-none"}>
-                        <div style={{width: "100%", height: 1}} className={"bg-gray-200 my-6"}/>
-                        <CommentListItem comment={comment}/>
-                    </li>
-                ))
-            }
+            <ul className={"list-none"}>
 
-        </ul>
+                {
+                    props.comments.map(comment => (
+                        <li key={comment.id} className={"list-none"}>
+                            <div style={{width: "100%", height: 1}} className={"bg-gray-200 my-6"}/>
+                            <CommentListItem comment={comment}/>
+                        </li>
+                    ))
+                }
+
+            </ul>
+
+        </section>
 
     )
 

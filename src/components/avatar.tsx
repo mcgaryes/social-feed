@@ -1,6 +1,7 @@
 interface AvatarProps {
     image: string
     size?: number
+    className?: string | undefined
 }
 
 export default function Avatar(props: AvatarProps) {
@@ -12,7 +13,7 @@ export default function Avatar(props: AvatarProps) {
                  width: props.size ?? 60,
                  height: props.size ?? 60
              }}
-             className={"bg-gray-200 rounded-full"}
+             className={"rounded-full".concat(" ", props.className ?? "")}
              alt={"avatar"}/>
 
     )
