@@ -56,8 +56,8 @@ export default function ActionBarButton(props: ActionBarButtonProps) {
             <div className={"text-xs sm:text-sm font-poppins"}>
                 {
                     type === ActionType.hype && count > threshold ?
-                        <p><span className={`font-bold text-cred-200`}>{count}</span> {action}</p> :
-                        <p><span className={`font-medium`}>{count}</span> {action}</p>
+                        <p><span data-testid={`${type}-display`} className={`font-bold text-cred-200`}>{count}</span> {action}</p> :
+                        <p><span data-testid={`${type}-display`} className={`font-medium`}>{count}</span> {action}</p>
                 }
             </div>
 
