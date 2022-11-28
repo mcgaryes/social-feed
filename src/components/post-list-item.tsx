@@ -49,13 +49,13 @@ export default function PostListItem(props: PostListItemProps) {
 
     return (
 
-        <div className="border rounded-lg px-6 py-4 flex flex-col gap-4">
+        <article className="border rounded-lg px-6 py-4 flex flex-col gap-4">
 
             <div className="flex flex-row gap-4">
 
-                <Avatar image={avatar}/>
+                <Avatar image={avatar} />
 
-                <div className="flex flex-col gap-1 grow">
+                <header className="flex flex-col gap-1 grow">
 
                     <div className="flex flex-row gap-4">
 
@@ -67,12 +67,11 @@ export default function PostListItem(props: PostListItemProps) {
 
                     </div>
 
-                    <p className={"text-sm text-gray-500"}>
+                    <h2 className={"text-sm text-gray-500"}>
                         {timeSinceDate}
-                    </p>
+                    </h2>
 
-                </div>
-
+                </header>
 
             </div>
 
@@ -109,7 +108,7 @@ export default function PostListItem(props: PostListItemProps) {
 
             <CommentsList comments={comments}/>
 
-        </div>
+        </article>
 
     )
 
